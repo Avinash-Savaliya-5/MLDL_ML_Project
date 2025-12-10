@@ -186,15 +186,15 @@ if st.button("🔮 Predict Risk", use_container_width=True, type="primary"):
         
         col_pred, col_conf = st.columns(2)
         
-        with col_pred:
-            if prediction == 0:
-                st.info("### 🟢 Low Risk\nNo cardiovascular disease detected.")
-                risk_level = "Low"
-                confidence = prediction_proba[0]
-            else:
-                st.warning("### 🔴 High Risk\nCardiovascular disease risk detected.")
-                risk_level = "High"
-                confidence = prediction_proba[1]
+        # with col_pred:
+        #     if prediction == 0:
+        #         st.info("### 🟢 Low Risk\nNo cardiovascular disease detected.")
+        #         risk_level = "Low"
+        #         confidence = prediction_proba[0]
+        #     else:
+        #         st.warning("### 🔴 High Risk\nCardiovascular disease risk detected.")
+        #         risk_level = "High"
+        #         confidence = prediction_proba[1]
         
         # with col_conf:
         #     st.metric("Confidence Level", f"{confidence*100:.2f}%")
