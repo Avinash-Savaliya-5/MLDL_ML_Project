@@ -159,11 +159,10 @@ with col_bmi:
 st.divider()
 if st.button("🔮 Predict Risk", use_container_width=True, type="primary"):
     # Prepare features in the exact order the model was trained on
-    # Order: Unnamed: 0, age, gender, height, weight, ap_hi, ap_lo, cholesterol, gluc, smoke, alco, active, bmi
-    feature_array = np.array([[
-        0,  # Unnamed: 0 (index)
+    # Order: Unnamed: 0, age, height, weight, ap_hi, ap_lo, cholesterol, gluc, smoke, alco, active, bmi
+    features = pd.DataFrame([[
+        0,  # Unnamed: 0 (index column)
         age, 
-        gender, 
         height, 
         weight, 
         systolic_bp,  # ap_hi
@@ -174,30 +173,30 @@ if st.button("🔮 Predict Risk", use_container_width=True, type="primary"):
         alcohol,  # alco
         physical_activity,  # active
         bmi
-    ]])
+    ]], columns=['Unnamed: 0', 'age', 'height', 'weight', 'ap_hi', 'ap_lo', 'cholesterol', 'gluc', 'smoke', 'alco', 'active', 'bmi'])
     
     try:
         # Make prediction
-        prediction = model.predict(feature_array)[0]
-        prediction_proba = model.predict_proba(feature_array)[0]
+        prediction = model.predict(features)[0]
+        prediction_proba = model.predict_proba(features)[0]
         
         # Display results
-        #st.success("✅ Prediction Complete!")
+        st.success("✅ Prediction Complete!")
         
         col_pred, col_conf = st.columns(2)
         
-        # with col_pred:
-        #     if prediction == 0:
-        #         st.info("### 🟢 Low Risk\nNo cardiovascular disease detected.")
-        #         risk_level = "Low"
-        #         confidence = prediction_proba[0]
-        #     else:
-        #         st.warning("### 🔴 High Risk\nCardiovascular disease risk detected.")
-        #         risk_level = "High"
-        #         confidence = prediction_proba[1]
+        with col_pred:
+            if prediction == 0:
+                st.info("### 🟢 Low Risk\nNo cardiovascular disease detected.")
+                risk_level = "Low"
+                confidence = prediction_proba[0]
+            else:
+                st.warning("### 🔴 High Risk\nCardiovascular disease risk detected.")
+                risk_level = "High"
+                confidence = prediction_proba[1]
         
-        # with col_conf:
-        #     st.metric("Confidence Level", f"{confidence*100:.2f}%")
+        with col_conf:
+            st.metric("Confidence Level", f"{confidence*100:.2f}%")
         
         # Additional health advice
         st.divider()
