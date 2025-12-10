@@ -196,8 +196,8 @@ if st.button("🔮 Predict Risk", use_container_width=True, type="primary"):
                 risk_level = "High"
                 confidence = prediction_proba[1]
         
-        with col_conf:
-            st.metric("Confidence Level", f"{confidence*100:.2f}%")
+        # with col_conf:
+        #     st.metric("Confidence Level", f"{confidence*100:.2f}%")
         
         # Additional health advice
         st.divider()
