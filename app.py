@@ -60,9 +60,21 @@ st.markdown("""
     
     /* Subheader styling - Dark Theme */
     h2, h3 {
-        color: #a855f7;
+        color: #e0e0e0;
         font-weight: 700;
-        text-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
+        text-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
+        background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        display: inline-block;
+    }
+    
+    /* Subheader container for full width */
+    .stMarkdown h2, .stMarkdown h3 {
+        background: linear-gradient(135deg, #f0abfc 0%, #fbbf24 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        display: block;
     }
     
     /* Input field styling - Dark Theme */
@@ -90,51 +102,86 @@ st.markdown("""
     
     /* Button styling with pulse animation - Dark Theme */
     .stButton > button {
-        background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+        background: linear-gradient(135deg, #a855f7 0%, #ec4899 50%, #f59e0b 100%);
+        background-size: 200% 200%;
         color: white;
         border: none;
         border-radius: 15px;
         padding: 0.75rem 2rem;
-        font-size: 1.1rem;
-        font-weight: 600;
-        transition: all 0.3s ease;
-        animation: pulse 2s infinite, glow 2s ease-in-out infinite;
+        font-size: 1.2rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: all 0.4s ease;
+        animation: gradientShift 3s ease infinite, buttonPulse 1.5s ease-in-out infinite;
         position: relative;
         overflow: hidden;
+        box-shadow: 0 6px 30px rgba(168, 85, 247, 0.6), 0 0 0 0 rgba(236, 72, 153, 0.5);
     }
     
     .stButton > button::before {
-        content: '';
+        content: '✨';
         position: absolute;
         top: 50%;
-        left: 50%;
-        width: 0;
-        height: 0;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.3);
-        transform: translate(-50%, -50%);
-        transition: width 0.6s, height 0.6s;
+        left: -30px;
+        transform: translateY(-50%);
+        font-size: 1.5rem;
+        animation: sparkleMove 2s linear infinite;
     }
     
-    .stButton > button:hover::before {
-        width: 300px;
-        height: 300px;
+    .stButton > button::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        transition: left 0.5s;
     }
     
-    @keyframes pulse {
-        0%, 100% { transform: scale(1); box-shadow: 0 4px 15px rgba(168, 85, 247, 0.5); }
-        50% { transform: scale(1.03); box-shadow: 0 6px 25px rgba(236, 72, 153, 0.7); }
+    .stButton > button:hover::after {
+        left: 100%;
+    }
+    
+    @keyframes gradientShift {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+    
+    @keyframes buttonPulse {
+        0%, 100% { 
+            transform: scale(1); 
+            box-shadow: 0 6px 30px rgba(168, 85, 247, 0.6), 0 0 0 0 rgba(236, 72, 153, 0.5);
+        }
+        50% { 
+            transform: scale(1.05); 
+            box-shadow: 0 8px 40px rgba(236, 72, 153, 0.8), 0 0 0 10px rgba(168, 85, 247, 0);
+        }
+    }
+    
+    @keyframes sparkleMove {
+        0% { left: -30px; opacity: 0; }
+        50% { opacity: 1; }
+        100% { left: calc(100% + 30px); opacity: 0; }
     }
     
     @keyframes glow {
         0%, 100% { filter: brightness(1); }
-        50% { filter: brightness(1.2); }
+        50% { filter: brightness(1.3); }
     }
     
     .stButton > button:hover {
-        transform: translateY(-3px) scale(1.05);
-        box-shadow: 0 10px 30px rgba(168, 85, 247, 0.6);
+        transform: translateY(-3px) scale(1.08);
+        box-shadow: 0 12px 50px rgba(168, 85, 247, 0.8), 0 0 30px rgba(236, 72, 153, 0.6);
         animation: none;
+        filter: brightness(1.2);
+    }
+    
+    .stButton > button:active {
+        transform: translateY(-1px) scale(1.03);
+        box-shadow: 0 4px 20px rgba(168, 85, 247, 0.7);
     }
     
     /* Metric cards - Dark Theme */
