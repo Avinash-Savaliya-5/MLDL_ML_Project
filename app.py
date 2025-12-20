@@ -11,33 +11,27 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Custom CSS for animations and better UI
+# Custom CSS for black background and orange accents
 st.markdown("""
     <style>
-    /* Main background gradient - Dark Theme */
+    /* Main background - Pure Black */
     .stApp {
-        background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
-        animation: backgroundShift 15s ease infinite;
+        background: #000000;
     }
     
-    @keyframes backgroundShift {
-        0%, 100% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-    }
-    
-    /* Card-like containers - Dark Mode */
+    /* Card-like containers - Dark with orange border */
     .main .block-container {
-        background: rgba(30, 30, 46, 0.95);
+        background: rgba(20, 20, 20, 0.95);
         border-radius: 20px;
         padding: 2rem;
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        box-shadow: 0 8px 32px rgba(255, 102, 0, 0.2);
         backdrop-filter: blur(10px);
-        border: 1px solid rgba(147, 51, 234, 0.2);
+        border: 1px solid rgba(255, 102, 0, 0.3);
     }
     
-    /* Title animation - Dark Theme */
+    /* Title animation - Orange gradient */
     h1 {
-        background: linear-gradient(120deg, #a855f7, #ec4899, #8b5cf6, #06b6d4);
+        background: linear-gradient(120deg, #ff6600, #ff8800, #ffaa00, #ff6600);
         background-size: 300% auto;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
@@ -58,51 +52,44 @@ st.markdown("""
         50% { transform: translateY(-10px); }
     }
     
-    /* Subheader styling - Dark Theme */
+    /* Subheader styling - Orange theme */
     h2, h3 {
-        color: #e0e0e0;
+        color: #ff6600;
         font-weight: 700;
-        text-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
-        background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        display: inline-block;
+        text-shadow: 0 0 20px rgba(255, 102, 0, 0.5);
     }
     
     /* Subheader container for full width */
     .stMarkdown h2, .stMarkdown h3 {
-        background: linear-gradient(135deg, #f0abfc 0%, #fbbf24 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        display: block;
+        color: #ff6600;
     }
     
-    /* Input field styling - Dark Theme */
+    /* Input field styling - Black with orange accents */
     .stNumberInput > div > div > input,
     .stSelectbox > div > div > div {
         border-radius: 10px;
-        border: 2px solid rgba(147, 51, 234, 0.3);
-        background: rgba(30, 30, 46, 0.8);
-        color: #e0e0e0;
+        border: 2px solid rgba(255, 102, 0, 0.3);
+        background: rgba(0, 0, 0, 0.8);
+        color: #ffffff;
         transition: all 0.3s ease;
     }
     
     .stNumberInput > div > div > input:focus,
     .stSelectbox > div > div > div:focus {
-        border-color: #a855f7;
-        box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.2), 0 0 20px rgba(168, 85, 247, 0.4);
+        border-color: #ff6600;
+        box-shadow: 0 0 0 3px rgba(255, 102, 0, 0.2), 0 0 20px rgba(255, 102, 0, 0.4);
         transform: scale(1.02);
     }
     
     /* Label styling */
     label {
-        color: #c0c0c0 !important;
+        color: #cccccc !important;
         font-weight: 500;
     }
     
-    /* Button styling with pulse animation - Dark Theme */
+    /* Button styling - Orange gradient */
     .stButton > button {
-        background: linear-gradient(135deg, #a855f7 0%, #ec4899 50%, #f59e0b 100%);
+        background: linear-gradient(135deg, #ff6600 0%, #ff8800 50%, #ffaa00 100%);
         background-size: 200% 200%;
         color: white;
         border: none;
@@ -116,7 +103,7 @@ st.markdown("""
         animation: gradientShift 3s ease infinite, buttonPulse 1.5s ease-in-out infinite;
         position: relative;
         overflow: hidden;
-        box-shadow: 0 6px 30px rgba(168, 85, 247, 0.6), 0 0 0 0 rgba(236, 72, 153, 0.5);
+        box-shadow: 0 6px 30px rgba(255, 102, 0, 0.6), 0 0 0 0 rgba(255, 136, 0, 0.5);
     }
     
     .stButton > button::before {
@@ -153,11 +140,11 @@ st.markdown("""
     @keyframes buttonPulse {
         0%, 100% { 
             transform: scale(1); 
-            box-shadow: 0 6px 30px rgba(168, 85, 247, 0.6), 0 0 0 0 rgba(236, 72, 153, 0.5);
+            box-shadow: 0 6px 30px rgba(255, 102, 0, 0.6), 0 0 0 0 rgba(255, 136, 0, 0.5);
         }
         50% { 
             transform: scale(1.05); 
-            box-shadow: 0 8px 40px rgba(236, 72, 153, 0.8), 0 0 0 10px rgba(168, 85, 247, 0);
+            box-shadow: 0 8px 40px rgba(255, 136, 0, 0.8), 0 0 0 10px rgba(255, 102, 0, 0);
         }
     }
     
@@ -167,30 +154,25 @@ st.markdown("""
         100% { left: calc(100% + 30px); opacity: 0; }
     }
     
-    @keyframes glow {
-        0%, 100% { filter: brightness(1); }
-        50% { filter: brightness(1.3); }
-    }
-    
     .stButton > button:hover {
         transform: translateY(-3px) scale(1.08);
-        box-shadow: 0 12px 50px rgba(168, 85, 247, 0.8), 0 0 30px rgba(236, 72, 153, 0.6);
+        box-shadow: 0 12px 50px rgba(255, 102, 0, 0.8), 0 0 30px rgba(255, 136, 0, 0.6);
         animation: none;
         filter: brightness(1.2);
     }
     
     .stButton > button:active {
         transform: translateY(-1px) scale(1.03);
-        box-shadow: 0 4px 20px rgba(168, 85, 247, 0.7);
+        box-shadow: 0 4px 20px rgba(255, 102, 0, 0.7);
     }
     
-    /* Metric cards - Dark Theme */
+    /* Metric cards - Orange theme */
     [data-testid="stMetricValue"] {
         font-size: 2rem;
         font-weight: 700;
-        color: #a855f7;
+        color: #ff6600;
         animation: scaleIn 0.5s ease-out;
-        text-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
+        text-shadow: 0 0 20px rgba(255, 102, 0, 0.5);
     }
     
     @keyframes scaleIn {
@@ -198,13 +180,13 @@ st.markdown("""
         to { transform: scale(1); opacity: 1; }
     }
     
-    /* Info boxes with gradient borders - Dark Theme */
+    /* Info boxes - Black with orange border */
     .stAlert {
         border-radius: 15px;
         animation: fadeIn 0.5s ease-in;
-        background: rgba(30, 30, 46, 0.8);
-        border: 1px solid rgba(168, 85, 247, 0.3);
-        color: #e0e0e0;
+        background: rgba(20, 20, 20, 0.8);
+        border: 1px solid rgba(255, 102, 0, 0.3);
+        color: #ffffff;
     }
     
     @keyframes fadeIn {
@@ -212,7 +194,7 @@ st.markdown("""
         to { opacity: 1; transform: translateY(0); }
     }
     
-    /* Success message - Dark Theme */
+    /* Success message - Green with black background */
     .success-box {
         background: linear-gradient(135deg, #059669 0%, #10b981 100%);
         color: white;
@@ -233,7 +215,7 @@ st.markdown("""
         50% { box-shadow: 0 8px 40px rgba(16, 185, 129, 0.7); }
     }
     
-    /* Warning message - Dark Theme */
+    /* Warning message - Red with black background */
     .warning-box {
         background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
         color: white;
@@ -249,11 +231,11 @@ st.markdown("""
         50% { box-shadow: 0 8px 40px rgba(239, 68, 68, 0.7); }
     }
     
-    /* Divider styling - Dark Theme */
+    /* Divider styling - Orange gradient */
     hr {
         border: none;
         height: 2px;
-        background: linear-gradient(90deg, transparent, #a855f7, #ec4899, #a855f7, transparent);
+        background: linear-gradient(90deg, transparent, #ff6600, #ff8800, #ff6600, transparent);
         margin: 2rem 0;
         animation: dividerGlow 3s ease-in-out infinite;
     }
@@ -272,16 +254,16 @@ st.markdown("""
         transform: translateY(-2px);
     }
     
-    /* Recommendation list styling - Dark Theme */
+    /* Recommendation list styling - Orange accents */
     .recommendation-item {
-        background: linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+        background: linear-gradient(135deg, rgba(255, 102, 0, 0.1) 0%, rgba(255, 136, 0, 0.1) 100%);
         padding: 1rem;
         margin: 0.5rem 0;
         border-radius: 10px;
-        border-left: 4px solid #a855f7;
+        border-left: 4px solid #ff6600;
         animation: fadeInUp 0.5s ease-out, itemPulse 3s ease-in-out infinite;
-        color: #e0e0e0;
-        box-shadow: 0 4px 15px rgba(168, 85, 247, 0.2);
+        color: #ffffff;
+        box-shadow: 0 4px 15px rgba(255, 102, 0, 0.2);
     }
     
     @keyframes fadeInUp {
@@ -290,11 +272,11 @@ st.markdown("""
     }
     
     @keyframes itemPulse {
-        0%, 100% { border-left-color: #a855f7; }
-        50% { border-left-color: #ec4899; }
+        0%, 100% { border-left-color: #ff6600; }
+        50% { border-left-color: #ff8800; }
     }
     
-    /* BMI badge styling - Dark Theme */
+    /* BMI badge styling */
     .bmi-badge {
         display: inline-block;
         padding: 0.5rem 1rem;
@@ -317,31 +299,29 @@ st.markdown("""
         50% { transform: translateY(-5px); }
     }
     
-    /* Footer styling - Dark Theme */
+    /* Footer styling - Black with orange border */
     .footer {
-        background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
-        color: #e0e0e0;
+        background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
+        color: #ffffff;
         padding: 1.5rem;
         border-radius: 15px;
         margin-top: 2rem;
-        border: 1px solid rgba(168, 85, 247, 0.3);
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        border: 1px solid rgba(255, 102, 0, 0.3);
+        box-shadow: 0 8px 32px rgba(255, 102, 0, 0.2);
     }
     
-    /* Particle effect overlay */
-    @keyframes float-particles {
-        0%, 100% { transform: translateY(0px) translateX(0px); opacity: 0.5; }
-        50% { transform: translateY(-20px) translateX(10px); opacity: 0.8; }
+    /* Text color adjustments */
+    p, span, div {
+        color: #ffffff;
     }
     
-    /* Text glow effect */
-    .glow-text {
-        animation: textGlow 2s ease-in-out infinite;
+    /* Sidebar styling - Orange navbar */
+    [data-testid="stSidebar"] {
+        background: linear-gradient(180deg, #ff6600 0%, #ff8800 100%);
     }
     
-    @keyframes textGlow {
-        0%, 100% { text-shadow: 0 0 10px rgba(168, 85, 247, 0.5); }
-        50% { text-shadow: 0 0 20px rgba(236, 72, 153, 0.8), 0 0 30px rgba(168, 85, 247, 0.6); }
+    [data-testid="stSidebar"] * {
+        color: white !important;
     }
     </style>
 """, unsafe_allow_html=True)
@@ -362,8 +342,8 @@ except FileNotFoundError:
 # Page title and description
 st.title("❤️ Cardiovascular Disease Risk Predictor")
 st.markdown("""
-    <div style='text-align: center; padding: 1.5rem; background: linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%); border-radius: 15px; margin-bottom: 2rem; border: 1px solid rgba(168, 85, 247, 0.3); animation: fadeIn 1s ease-in;'>
-        <p style='font-size: 1.1rem; color: #e0e0e0; margin: 0;'>
+    <div style='text-align: center; padding: 1.5rem; background: linear-gradient(135deg, rgba(255, 102, 0, 0.1) 0%, rgba(255, 136, 0, 0.1) 100%); border-radius: 15px; margin-bottom: 2rem; border: 1px solid rgba(255, 102, 0, 0.3); animation: fadeIn 1s ease-in;'>
+        <p style='font-size: 1.1rem; color: #ffffff; margin: 0;'>
             🏥 This app predicts the risk of cardiovascular disease based on various health parameters.<br>
             📋 Please provide your health information below to get a prediction.
         </p>
@@ -601,7 +581,7 @@ if st.button("🔮 Predict Risk", use_container_width=True, type="primary"):
 st.divider()
 st.markdown("""
     <div class='footer'>
-        <h3 style='color: white; margin-top: 0;'>⚠️ Important Disclaimer</h3>
+        <h3 style='color: #ff6600; margin-top: 0;'>⚠️ Important Disclaimer</h3>
         <p style='margin: 0.5rem 0;'><strong>Medical Advice:</strong> This prediction tool is for informational purposes only and should not be 
         used as a substitute for professional medical advice. Always consult with a qualified healthcare 
         professional for accurate diagnosis and treatment recommendations.</p>
